@@ -142,7 +142,7 @@ In our case that concerns in dl, it means we're looking for register edx and dl 
 
 So, as we've already known the content of register %edx (0xf7fba000), we can conclude that the right most 8 bit is the right most two digits of hexadecimal representation, namely 00. That two digits must be changed into 59. So, the final value of register %edx should be 0xf7fba059.  
 
-Ok, let’s start the exploit!
+Ok, let's start the exploit!
 
 Let's quit from GDB by typing command **q** and type this command:
 
