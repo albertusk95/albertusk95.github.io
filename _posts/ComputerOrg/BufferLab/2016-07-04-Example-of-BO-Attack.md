@@ -37,7 +37,7 @@ And next what happens with the procedure **GetBuff**'s stack frame.
 
 <img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img/howboworks01.png?raw=true" alt="How BO works" title="https://i2.wp.com/www.tenouk.com/Bufferoverflowc/Bufferoverflow4_files/image002.png" />
 
-We can see that the allocated space for buff[4] has been filled with 3 characters 'A' and 1 character _null-terminated string_. If we look at the Assembly code, the register %esp located at address %ebp-4 (0xbfea2fb4) will have an element with value 0x00414141 (if the machine uses **Little Endian**) or 0x41414100 (if the machine uses "Big Endian").
+We can see that the allocated space for buff[4] has been filled with 3 characters 'A' and 1 character _null-terminated string_. If we look at the Assembly code, the register %esp located at address %ebp-4 (0xbfea2fb4) will have an element with value 0x00414141 (if the machine uses **Little Endian**) or 0x41414100 (if the machine uses **Big Endian**).
 
 For the case of 3 characters input value, register %ebp still holds the initial value, likewise with the block containing return address at address %ebp+4. Therefore, when procedure **GetBuff** finishes the execution, the procedure's stack frame will be removed (_Pop_) and pointer %ebp and %esp will be going back to the address holding the value of those pointer registers.
 
