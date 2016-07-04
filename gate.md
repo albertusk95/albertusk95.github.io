@@ -10,7 +10,7 @@ You can go to my stories easily with this navigation link.
 >> * [What is Buffer Overflow?](https://albertusk95.github.io/2016/07/04/What-is-Buffer-Overflow)
 >> * [Stack Structure](https://albertusk95.github.io/2016/07/04/Stack-Frame)
 >> * [Example of Buffer Overflow's Attack](https://albertusk95.github.io/2016/07/04/Example-of-BO-Attack)
->> * [Buffer Lab]()
+>> * [Buffer Lab](https://albertusk95.github.io/2016/07/04/Buffer-Lab)
 >> * [Level 0 - Call Good Night]()
 >> * [Level 1 - Shooting Star]()
 >> * [Level 2 - Hi~]()
