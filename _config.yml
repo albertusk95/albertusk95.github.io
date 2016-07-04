@@ -1,0 +1,26 @@
+# Dependencies
+markdown: kramdown
+highlighter: rouge
+
+# Permalinks
+permalink: /:year/:month/:day/:title
+
+# Setup
+title:            'Albertus Kelvin'
+tagline:          'My Personal Site'
+description:      'Share the life stories inside the code'
+url:              http://hyde.getpoole.com
+baseurl:          /
+
+author:
+  name:           'Albertus Kelvin'
+  url:            https://facebook.com/albertus.kelvin
+
+gems: [jekyll-paginate]
+paginate:         5
+
+# Custom vars
+version:          3.1.6
+github:
+  repo: https://github.com/poole/hyde
+
