@@ -17,7 +17,7 @@ Now pay attention, shortly after calling function **Foo()**, register %esp will 
 
 Then, suppose there is an Assembly's instruction like this.
 
-> pushl %ebp [1]
+> pushl %ebp [1]<br />
 > movl %esp, %ebp [2]
 
 The first code means we enter the register %ebp into the stack. The concept of this entry is same as the push concept in the general stack, namely the newest element becomes the _Top_ of the stack. In this case, **ebp** becomes the _Top_ of the stack and it's placed after the block contains **return address**. Look also for this time, register %esp refers to the block containing **saved ebp**.

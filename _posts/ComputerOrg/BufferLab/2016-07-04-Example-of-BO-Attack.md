@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Example's of Buffer Overflow Attack
+title: Examples of Buffer Overflow Attack
 ---
 
 In the earlier section we have learnt a bit about buffer overflow technique. The primary concept is flooding the stack frame with input exceeding the buffer limit so that we can manipulate any datas saved on the stack frame. Some things that can be done using this technique are change the return address so that the attackers can call any functions they want, change the content of variables so that the function executes corresponding code, or change the return value of a function.
@@ -17,7 +17,7 @@ Suppose we have a procedure **GetBuff** where inside that procedure there's an a
 
 Procedure **GetBuff** is called by **main()** where its initial structure of stack frame can be illustrated by this image.
 
-<img src="https://github.com/albertusk95/irk_assets/blob/master/img/howboworks00.png?raw=true" alt="How BO works" title="https://i2.wp.com/www.tenouk.com/Bufferoverflowc/Bufferoverflow4_files/image001.png" />
+<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img/howboworks00.png?raw=true" alt="How BO works" title="https://i2.wp.com/www.tenouk.com/Bufferoverflowc/Bufferoverflow4_files/image001.png" />
 
 From the above initial structure, we can see that there is pointer %ebp that is moved from **main()** so that its value is 0 seen from procedure **GetBuff** point of view. Pointer %esp is also located at address %ebp-4 where there is an allocation space for array of char buff in that block.
 
@@ -35,7 +35,7 @@ Character 'A' is represented as 41 in hexadecimal.
 
 And next what happens with the procedure **GetBuff**'s stack frame.
 
-<img src="https://github.com/albertusk95/irk_assets/blob/master/img/howboworks01.png?raw=true" alt="How BO works" title="https://i2.wp.com/www.tenouk.com/Bufferoverflowc/Bufferoverflow4_files/image002.png" />
+<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img/howboworks01.png?raw=true" alt="How BO works" title="https://i2.wp.com/www.tenouk.com/Bufferoverflowc/Bufferoverflow4_files/image002.png" />
 
 We can see that the allocated space for buff[4] has been filled with 3 characters 'A' and 1 character _null-terminated string_. If we look at the Assembly code, the register %esp located at address %ebp-4 (0xbfea2fb4) will have an element with value 0x00414141 (if the machine uses **Little Endian**) or 0x41414100 (if the machine uses "Big Endian").
 
@@ -48,7 +48,7 @@ Then, what about this case?
 
 Why can be a Segmentation Fault? Let's look at the stack frame's condition.
 
-<img src="https://github.com/albertusk95/irk_assets/blob/master/img/howboworks02.png?raw=true" alt="How BO works" title="https://i1.wp.com/www.tenouk.com/Bufferoverflowc/Bufferoverflow4_files/image003.png" />
+<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img/howboworks02.png?raw=true" alt="How BO works" title="https://i1.wp.com/www.tenouk.com/Bufferoverflowc/Bufferoverflow4_files/image003.png" />
 
 The character entry process into the allocated space for buff[4] is same as previous case, the only difference is because **gets()** doesn't check whether the length of inputted string exceeds the buffer's limit or not, so the excess input of character 'A' will be stored at the above block (in this case %ebp). We can see that block %ebp is corrupted by input character 'A' and '\0'. This thing surely makes pointer %ebp doesn't have the actual value and makes pointer %ebp can't be returned into **main()**'s stack frame to be base pointer. Indeed it's true that after procedure **GetBuff** finished, program will be going back to **main()** at the return address 0x08048427, yet the address's calculation on **main()** will be broken as the value of %ebp is not the old value anymore. For preventing the further negative effects, program suspends the execution and shows up Segmentation Fault message which means program can't execute normally.
 
@@ -57,7 +57,7 @@ Then, how about the case when we want to change the return address so that we ca
 > input : AAAAAAAA<br />
 > output : Segmentation Fault<br />
 
-<img src="https://github.com/albertusk95/irk_assets/blob/master/img/howboworks03.png?raw=true" alt="How BO works" title="https://i1.wp.com/www.tenouk.com/Bufferoverflowc/Bufferoverflow4_files/image004.png" />
+<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img/howboworks03.png?raw=true" alt="How BO works" title="https://i1.wp.com/www.tenouk.com/Bufferoverflowc/Bufferoverflow4_files/image004.png" />
 
 From the condition of above stack frame, we can see that block %ebp is fully exchanged into 0x41414141 and block containing return address is exchanged also into 0x08048400 which means it's not the valid return address. After procedure **GetBuff** executing **gets()**, program won't be going back to **main()** for executing the next code, yet it goes to function/ procedure which is located at 0x08048400. The point is there's a probability that the function at that address contains any mallicious code.
 
