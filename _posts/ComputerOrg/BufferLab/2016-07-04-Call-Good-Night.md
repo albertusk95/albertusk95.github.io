@@ -149,7 +149,7 @@ gs       |     0x63 |   99
 
 When the program reaches command **gets()**, we need to give an input. Give a string input, where in this case I gave string **AAA** which has value **414141** in hexadecimal.
 
-Then we use command **i r** to see the content of registers. We can see that the address of register %esp is at 0x55683638. So, what happens on function **ah_choo()**'s stack frame after we give an input **AAA**? 
+Then we use command **i r** to see the contents of registers. We can see that the address of register %esp is at 0x55683638. So, what happens on function **ah_choo()**'s stack frame after we give an input **AAA**? 
 
 Still using GDB, type this command:
 
@@ -163,9 +163,9 @@ Stack Frame | | | | |
 0x55683668 <_reserved+1037928>:  | 0x00000000  | 0xf7fd6000  | 0x00000000  | 0x08048db7
 0x55683678 <_reserved+1037944>:  | 0x00000e16  | 0x0000000a  | 0x00000000  | 0x08048d0c
 
-We use command **x/20x $esp** to see the content of stack frame of the current function as much as 20 blocks with the address of register %esp is at the very bottom, in this case it's located at 0x55683638. Because the address of register %esp is the lowest and each block within the stack has an address with multiple of 4, we can calculate the address where our input **AAA** (**414141**) resides.
+We use command **x/20x $esp** to see the contents of stack frame of the current function as much as 20 blocks with the address of register %esp is at the very bottom, in this case it's located at 0x55683638. Because the address of register %esp is the lowest and each block within the stack has an address with multiple of 4, we can calculate the address where our input **AAA** (**414141**) resides.
  
-From above illustration we can see that the stack's block that has value 0x00414141 is located at the second row, and it is our input. To prove our calculation in the right track, let we calculate the address starting from 0x55683638 (the content of this address is 0x55683650). 
+From above illustration we can see that the stack's block that has value 0x00414141 is located at the second row, and it is our input. To prove our calculation in the right track, let we calculate the address starting from 0x55683638 (the contents of this address is 0x55683650). 
 
 Still using GDB, type this command:  
  
@@ -173,13 +173,13 @@ Still using GDB, type this command:
 > $1 = 0x55683650<br />
 > (gdb) x/ 0x55683650<br />
 
-Address | Content
+Address | contents
 --- | ---
 0x55683650 <_reserved+1037904>:  |  0x00414141<br />
 
-We use **x/ 0x55683650** to see the content of address 0x55683650. Evidently, the content of that address is 0x00414141. So that's right if our input **AAA** starts from that address.
+We use **x/ 0x55683650** to see the contents of address 0x55683650. Evidently, the contents of that address is 0x00414141. So that's right if our input **AAA** starts from that address.
 
-Now let's take a look at the content of the stack. From the previous explanation, we know that the return address of function **ah_choo()** is 0x08048d0c. This return address will make our program being redirect to procedure **test()**. Because we want to redirect it to procedure **good_night()**, we must change that return address with the return address of procedure **good_night()**.
+Now let's take a look at the contents of the stack. From the previous explanation, we know that the return address of function **ah_choo()** is 0x08048d0c. This return address will make our program being redirect to procedure **test()**. Because we want to redirect it to procedure **good_night()**, we must change that return address with the return address of procedure **good_night()**.
    
 We have to find the return address of function **ah_choo()**, namely 0x08048d0c on the stack frame with command **x/20x $esp**. We can find it in the last line. Because we had known that our input resides at address 0x55683650, we can calculate the number of characters needed to overwrite the return address 0x08048d0c. In this case, there are 52 characters represented in hexadecimal (2 digits) that should be included to corrupt all the stack's blocks below the block of return address. That 52 characters are free, it will only be a medium to accompany us to go to the block of function **ah_choo()** return address. After we input that 52 characters, we need 4 characters again to substitute the function **ah_choo()** return address. So, what are the 4 characters? Yes, they are the address of procedure **good_night()**, namely 08048b50.
 

