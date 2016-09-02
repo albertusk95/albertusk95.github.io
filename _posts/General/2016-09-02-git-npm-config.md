@@ -21,6 +21,9 @@ When you want to push your commit to GitHub using git or install some modules us
 > git config --global http.proxy http://proxy:port<br />
 > git config --global https.proxy http://proxy:port<br />
 
+_**In case it needs authentication**_<br />
+> git config --global http.proxy http[s]://username:password@proxy:port<br />
+
 ### Reseting proxy
 
 **npm**<br />
@@ -39,4 +42,5 @@ When you want to push your commit to GitHub using git or install some modules us
 > npm config get https-proxy<br />
 
 **git**<br />
-> git config --global --list<br /> 
+> git config --global --list<br />
+> git config --global --get http.proxy 
