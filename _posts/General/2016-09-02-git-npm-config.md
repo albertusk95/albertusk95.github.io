@@ -14,29 +14,29 @@ When you want to push your commit to GitHub using git or install some modules us
 ### Setting proxy
 
 **npm**<br />
-> npm config set proxy http://proxy:port
-> npm config set https-proxy http://proxy:port
+> npm config set proxy http://proxy:port<br />
+> npm config set https-proxy http://proxy:port<br />
 
 **git**<br />
-> git config --global http.proxy http://proxy:port
-> git config --global https.proxy http://proxy:port
+> git config --global http.proxy http://proxy:port<br />
+> git config --global https.proxy http://proxy:port<br />
 
 ### Reseting proxy
 
 **npm**<br />
-> npm config rm proxy
-> npm config rm https-proxy
+> npm config rm proxy<br />
+> npm config rm https-proxy<br />
 
 **git**<br />
-> git config --global --unset http.proxy
-> git config --global --unset https.proxy
+> git config --global --unset http.proxy<br />
+> git config --global --unset https.proxy<br />
 
 ### Getting proxy settings
 
 **npm**<br />
-> npm config get list
-> npm config get proxy
-> npm config get https-proxy
+> npm config get list<br />
+> npm config get proxy<br />
+> npm config get https-proxy<br />
 
 **git**<br />
-> git config --global --list 
+> git config --global --list<br /> 
