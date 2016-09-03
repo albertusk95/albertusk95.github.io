@@ -7,6 +7,7 @@ You can go to my stories easily with this navigation link.
 
 > ### General
 > * [git and npm proxy configuration](https://albertusk95.github.io/2016/09/02/git-npm-config)
+> * [npm proxy error while not behind proxy](https://albertusk95.github.io/2016/09/03/npm-proxy-errors)
 
 > ### Computer Organization
 > * #### Buffer Lab
