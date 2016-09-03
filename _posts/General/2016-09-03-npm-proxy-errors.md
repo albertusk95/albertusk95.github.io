@@ -1,6 +1,6 @@
 ---
 layout: post
-title: npm not behind proxy errors and solutions
+title: npm proxy error while not behind proxy
 ---
 
 ### Problem:
@@ -31,21 +31,25 @@ Yet in this article, I am not talking about the possibility you have a bad proxy
 
 So, make sure that you are not behind any proxies yet got this error. You can simply check your proxy config by this command:<br />
 
-**user config**
+**user config**<br />
+
 > npm config get proxy<br />
 > npm config get https-proxy<br />
 
-**global config**
+**global config**<br />
+
 > npm config get proxy -g<br />
 > npm config get https-proxy -g<br />
 
 If you have a proxy listed for one or both of those proxy protocols (either user or global config), use this command:
 
-**user config**
+**user config**<br />
+
 > npm config rm proxy<br />
 > npm config rm https-proxy<br />
 
-**global config**
+**global config**<br />
+
 > npm config rm proxy -g<br />
 > npm config rm https-proxy -g<br />
 
