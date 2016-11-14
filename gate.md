@@ -7,7 +7,6 @@ You can go to my stories easily with this navigation link.
 
 > ### Ideas
 > * [1000StartupDigital - Ignition Day 1 Bandung](https://albertusk95.github.io/2016/11/14/ignition01-1000sd)
-> * [npm proxy error while not behind proxy](https://albertusk95.github.io/2016/09/03/npm-proxy-errors)
 
 
 > ### General
