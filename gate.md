@@ -3,7 +3,7 @@ layout: page
 title: Stories Gate
 ---
 
-You can go to my stories easily with this navigation link.
+You can go to my stories easily using these navigation links.
 
 > ### Ideas
 > * [1000StartupDigital - Ignition Day 1 Bandung](https://albertusk95.github.io/2016/11/14/ignition01-1000sd)
