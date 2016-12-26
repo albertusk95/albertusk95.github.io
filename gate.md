@@ -13,6 +13,9 @@ You can go to my stories easily with this navigation link.
 > * [git and npm proxy configuration](https://albertusk95.github.io/2016/09/02/git-npm-config)
 > * [npm proxy error while not behind proxy](https://albertusk95.github.io/2016/09/03/npm-proxy-errors)
 
+> ### Data Mining
+> * [Sentiment Analysis using WEKA](https://albertusk95.github.io/2016/12/26/sentiment-analysis)
+
 > ### Computer Organization
 > * #### Buffer Lab
 >> * [What is Buffer Overflow?](https://albertusk95.github.io/2016/07/04/What-is-Buffer-Overflow)
