@@ -15,7 +15,21 @@ One of the common application used to do this job is Sentiment Analyzer. This ap
 
 ## Programming Languages
 
-For this Sentiment Analysis application, we will use **Java (JSP, Servlet)** as the primary programming language. We'll also use several frameworks and libraries, such as **WEKA**, **AngularJS**, **Bootstrap**, **jQuery**, and **twitter4j (Java library for the Twitter API)**.
+Programming Languages:
+
+<ul>
+	<li>Java (JSP, Servlet)</li>
+</ul>
+
+Frameworks and Libraries:
+
+<ul>
+	<li>WEKA</li>
+	<li>AngularJS</li>
+	<li>Bootstrap</li>
+	<li>jQuery</li>
+	<li>twitter4j (Java library for the Twitter API)</li>
+</ul>
 
 -----
 
@@ -172,6 +186,13 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 								</ul>
 							</li>
 						</ul>
+						
+						This is an example of code for training the text-based representation:
+						
+						![text-based representation training](../../public/img_sentiment/z_trainText.png)
+						
+						<br />
+					
 					</li>
 					<li><b>Polarity Classifier</b>
 						<ul>
@@ -194,6 +215,19 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 								</ul>
 							</li>
 						</ul>
+					
+						This is an example of code for initializing filterer and tokenizer:
+						
+						![initializing filterer and tokenizer](../../public/img_sentiment/z_stwvngram.png)
+						
+						<br />
+						
+						This is an example of code for initializing classifiers:
+						
+						![]initializing classifiers](../../public/img_sentiment/z_initClassifier.png)
+						
+						<br />
+					
 					</li>
 					<li><b>Tweet Preprocessor</b>
 						<ul>
@@ -255,6 +289,13 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 										</ul>
 									</li>
 								</ul>
+								
+								This is an example of code for retrieving features attributes, such as abbreviations, happy and sad emoticons, etc:
+								
+								![retrieving features attributes](../../public/img_sentiment/z_ctortxtproc.png)
+								
+								<br />
+								
 							</li>
 							<li><b>Initializes Part of Speech (POS) tagger</b>
 								<ul>
@@ -273,6 +314,13 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 							<li>In the <b>Supporting Model</b> section, I've explained briefly about the classification method that will be used for this application</li>
 							<li>When we choose to use this method, we need to provide an alternative way in case we receive the <b>nan</b> class as the predicted class. To do that, we have to create a new data train which will be a place for storing the current instance and training the new model based on the "agreed" instances in that data train</li>
 						</ul>
+						
+						This is an example of code for creating a new data train and data test for the case of using sliding window:
+
+						![creating a new data train and data test for sliding window](../../public/img_sentiment/z_inituseSW.png)
+						
+						<br />
+						
 					</li>
 				</ul>
 			</li>
@@ -311,6 +359,13 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 										</ul>
 									</li>
 								</ul>
+								
+								This is an example of code for preprocessing tweets:
+								
+								![preprocessing tweets](../../public/img_sentiment/z_getprocessed.png)
+								
+								<br />
+								
 							</li>
 							<li><b>Initializes the instances (data test) of lexicon, text, feature, and complex</b>
 								<ul>
@@ -389,6 +444,13 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 								</ul>
 							</li>
 						</ul>
+						
+						This is an example of code for applying the core classifier:
+						
+						![applying core classifier](../../public/img_sentiment/z_apply.png)
+						
+						<br />
+						
 					</li>
 					<li><b>Check the Sliding Window</b>
 						<ul>
@@ -414,6 +476,13 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 										</ul>
 									</li>
 								</ul>
+								
+								This is an example of code when we implement the sliding window:
+								
+								![implementing sliding window](../../public/img_sentiment/z_useSWtrue.png)
+								
+								<br />
+								
 							</li>
 							<li><b>Case 1: does not use sliding window</b>
 								<ul>
@@ -429,6 +498,13 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 											</li>
 										</ul>
 									</li>
+									
+									This is an example of code when we do not implement the sliding window:
+									
+									![not implementing sliding window](../../public/img_sentiment/z_useSWfalse.png)
+									
+									<br />
+									
 								</ul>
 							</li>
 						</ul>
