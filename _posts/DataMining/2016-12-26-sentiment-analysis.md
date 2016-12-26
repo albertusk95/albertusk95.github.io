@@ -522,12 +522,6 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 
 Thanks to Petter Törnberg (Copyright 2013) for the demo code used to analyze the sentiment value of a word. I implemented the code on SWN3.java with several modifications.
 
-<br />
-
-You can find the original code [here](sentiwordnet.isti.cnr.it/code/SentiWordNetDemoCode.java)
-
-<br />
-
 You can read the theories behind the production of this application from these resources:
 
 <ul>
@@ -543,3 +537,6 @@ You can read the theories behind the production of this application from these r
 
 You can find the entire source code on my [Github](https://github.com/albertusk95/sentiment-analysis-twitter)
 
+-----
+
+### Albertus Kelvin 2016
