@@ -19,6 +19,56 @@ For this Sentiment Analysis application, we will use **Java (JSP, Servlet)** as 
 
 -----
 
+## Supporting Model
+
+This application uses a classification method called <b>SlidingWindow</b> which determines the model to be used when the <b>"disagreement"</b> condition is met. The <b>"disagreement"</b> is a condition where the core classifier can not classify the tweet into the class of positive or negative.<br />
+
+If we choose to use <b>SlidingWindow</b>, there are two possible conditions when we receive the result of classification, namely:<br />   
+
+<ul>
+	<li><b>If the core classifier returns the <b>positive</b> or <b>negative</b> as the predicted class,</b>
+		<ul>
+			<li>put the corresponding instance in the data train. We should also check whether the total number of instance is more than 1000. If so, remove the first instance</li>
+		</ul>
+	</li>
+	<li><b>If the core classifier returns <b>nan</b> as the predicted class,</b>
+		<ul>
+			<li>put the corresponding instance in the data test and it will be classified in the end of the process</li>
+			<li>For this condition, we should consider these possibilities too:
+				<ul>
+					<li><b>If the number of instances in the data train is more than 0,</b>
+						<ul>
+							<li>decides upon a "disagreed" document by applying the learned model based on the last 1000 "agreed" documents (stored in "train" instances)</li>
+						</ul>
+					</li>
+					<li><b>Else,</b>
+						<ul>
+							<li>unknown class for the train data is empty and can not do the training process. In this condition, we can just return random class as the final result.</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+
+If we choose <b>not</b> to use <b>SlidingWindow</b>, then there are also two possible conditions, namely:<br />
+
+<ul>
+	<li><b>If the core classifier returns the <b>positive</b> or <b>negative</b> as the predicted class,</b>
+		<ul>
+			<li>set the list of predicted class come from three possibilities</li>
+		</ul>
+	</li>
+	<li><b>If the core classifier returns <b>nan</b> as the predicted class,</b>
+		<ul>
+			<li>decides upon a "disagreed" (out = nan) document by applying the learned model based on the previously built model</li>
+		</ul>
+	</li>
+</ul>
+
+-----
+
 ## General Concept
 
 In this part, I will explain the core principal of this Sentiment Analysis and some code snippets so that you can understand the backend-logic better.
@@ -64,7 +114,7 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 							<li><b>Initializes BidiMap objects for text, feature, and complex representation</b>
 								<ul>
 									<li>
-										We use **DualHashBidiMap** that stores the pair of _String_ and _Integer_. The content of this BidiMap is all of the attributes from the dataset of every tweet's representation, namely **text**, **feature**, and **complex**. I will explain these three representations in the next sub-point.
+										We use <b>DualHashBidiMap</b> that stores the pair of <i>String</i> and <i>Integer</i>. The content of this BidiMap is all of the attributes from the dataset of every tweet's representation, namely <b>text</b>, <b>feature</b>, and <b>complex</b>. I will explain these three representations in the next sub-point.
 									</li>
 								</ul>
 							</li>
@@ -127,32 +177,102 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 						<ul>
 							<li><b>Initializes BidiMap objects for text, feature, and complex representation</b>
 								<ul>
-									<li>We create objects of **DualHashBidiMap** and initialize the value with the previous **DualHashBidiMap** explained in the **Trainer** sub-point</li>
+									<li>We create objects of <b>DualHashBidiMap</b> and initialize the value with the previous <b>DualHashBidiMap</b> explained in the <b>Trainer</b> sub-point</li>
 								</ul>
 							</li>
 							<li><b>Initializes filter (StringToWordVector) and tokenizer (NGramTokenizer)</b>
 								<ul>
-									<li>We choose **StringToWordVector** as the filterer and **NGramTokenizer** as the tokenizer. The minimum and maximum size for the tokenizer is 2</li>
+									<li>We choose <b>StringToWordVector</b> as the filterer and <b>NGramTokenizer</b> as the tokenizer. The minimum and maximum size for the tokenizer is 2</li>
 								</ul>	
 							</li>
 							<li><b>Initializes classifiers (MNB and LibSVM)</b>
 								<ul>
 									<li>Read the model which is built previously</li>
-									<li>We use **NaiveBayesMultinomial** for the text, feature, and complex representation</li>
-									<li>We use **LibSVM** for the lexicon representation</li>
-									<li>We also build an instance for every representation. It is built from the data train (**T.arff**, **F.arff**, and **C.arff**)</li> 
+									<li>We use <b>NaiveBayesMultinomial</b> for the text, feature, and complex representation</li>
+									<li>We use <b>LibSVM</b> for the lexicon representation</li>
+									<li>We also build an instance for every representation. It is built from the data train (<b>T.arff</b>, <b>F.arff</b>, and <b>C.arff</b>)</li> 
 								</ul>
 							</li>
 						</ul>
 					</li>
-					<li>Tweet Preprocessor
+					<li><b>Tweet Preprocessor</b>
 						<ul>
-							<li>Initializes preprocessor for lexicon, text, feature, and complex representation</li>
-							<li>Initializes Part of Speech (POS) tagger</li>
+							<li><b>Initializes preprocessor for lexicon, text, feature, and complex representation</b>
+								<ul>
+									<li>We create the object of attributes that will be used to preprocess all the representations before doing the classification. By preprocessing the words, we normalize them to a new sentence without any ambiguities. Here are the preprocessor for every representation:
+										<ul>
+											<li><b>Lexicon Preprocessor</b>
+												<ul>
+													<li>Sets the general score for every lexicon (use SentiWordNet as the resource)</li>
+													<li><b>Gets the abbreviations and store them in a hash-table</b>
+														<ul>
+															<li>Fetches the list of abbreviations and return its contents in a hash-table</li>
+															<li>Here are the examples: <i>afk=away from keyboard</i>, <i>aka=also known as</i>, <i>asap=as soon as possible</i></li>
+															<li>From the examples, the fetched results will be stored in a hash-table: <i><afk, away from keyboard></i>, <i><aka, also known as></i>, <i><asap, as soon as possible></i></li>
+														</ul>
+													</li>
+													<li><b>Gets the happy and sad emotions and store them in a linked list</b>
+														<ul>
+															<li>Fetches the list of the happy emoticons from a dictionary and store them in a linked list</li>
+															<li>Here are the examples: <i>:-)</i>, <i>:)</i>, <i>;)</i></li>
+															<li>From the examples, the fetched results will be stored in a linked list: <i>[:-), :), ;)]</i></li>
+														</ul>
+													</li>
+													<li><b>Gets the list of positive and negative words</b></li>
+												</ul>
+											</li>
+											<li><b>Text Preprocessor</b>
+												<ul>
+													<li><b>Gets the abbreviations and store them in a hash-table</b>
+														<ul>
+															<li>Fetches the list of abbreviations and return its contents in a hash-table</li>
+															<li>Here are the examples: <i>afk=away from keyboard</i>, <i>aka=also known as</i>, <i>asap=as soon as possible</i></li>
+															<li>From the examples, the fetched results will be stored in a hash-table: <i><afk, away from keyboard></i>, <i><aka, also known as></i>, <i><asap, as soon as possible></i></li>
+														</ul>
+													</li>
+													<li><b>Gets the happy and sad emotions and store them in a linked list</b>
+														<ul>
+															<li>Fetches the list of the happy emoticons from a dictionary and store them in a linked list</li>
+															<li>Here are the examples: <i>:-)</i>, <i>:)</i>, <i>;)</i></li>
+															<li>From the examples, the fetched results will be stored in a linked list: <i>[:-), :), ;)]</i></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											<li><b>Feature Preprocessor</b>
+												<ul>
+													<li>Gets the abbreviations and store them in a hash-table</li>
+													<li>Gets the happy and sad emoticons then store them in a linked list</li>
+													<li>Creates the combination of dot symbol and store them in a linked list</li>
+													<li>Creates the combination of exclamation symbol and store them in a linked list</li>	
+												</ul>
+											</li>
+											<li><b>Complex Preprocessor</b>
+												<ul>
+													<li>This preprocessor only returns the Part of Speech (POS) of tweets</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><b>Initializes Part of Speech (POS) tagger</b>
+								<ul>
+									<li>We create an object that will be used to analyze the POS using this tagger: <b>wsj-0-18-left3words-distsim.tagger</b></li>
+								</ul>
+							</li>
 						</ul>
 					</li>
-					<li>Initializes filterer (StringToWordVector) and tokenizer (NGramTokenizer)</li>
-					<li>Initializes data train and data test in case of we need to use sliding window</li>
+					<li><b>Initializes filterer (StringToWordVector) and tokenizer (NGramTokenizer)</b>
+						<ul>
+							<li>We use <b>StringToWordVector</b> as the filterer and <b>NGramTokenizer</b> as the tokenizer</li>
+						</ul>
+					</li>
+					<li><b>Initializes data train and data test in case of we need to use sliding window</b>
+						<ul>
+							
+						</ul>
+					</li>
 				</ul>
 			</li>
 			<li>Tweet initialization
