@@ -189,8 +189,8 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 						
 						This is an example of code for training the text-based representation:
 						
-						![text-based representation training](../../public/img_sentiment/z_trainText.png)
-						
+						<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_trainText.png?raw=true" alt="text-based representation training" />
+
 						<br />
 					
 					</li>
@@ -218,14 +218,14 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 					
 						This is an example of code for initializing filterer and tokenizer:
 						
-						![initializing filterer and tokenizer](../../public/img_sentiment/z_stwvngram.png)
-						
+						<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_stwvngram.png?raw=true" alt="initializes filterer and tokenizer" />
+
 						<br />
 						
 						This is an example of code for initializing classifiers:
 						
-						![]initializing classifiers](../../public/img_sentiment/z_initClassifier.png)
-						
+						<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_initClassifier.png?raw=true" alt="initializes classifiers" />
+
 						<br />
 					
 					</li>
@@ -292,8 +292,8 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 								
 								This is an example of code for retrieving features attributes, such as abbreviations, happy and sad emoticons, etc:
 								
-								![retrieving features attributes](../../public/img_sentiment/z_ctortxtproc.png)
-								
+								<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_ctortxtproc.png?raw=true" alt="retrieves feature attributes" />
+
 								<br />
 								
 							</li>
@@ -317,8 +317,8 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 						
 						This is an example of code for creating a new data train and data test for the case of using sliding window:
 
-						![creating a new data train and data test for sliding window](../../public/img_sentiment/z_inituseSW.png)
-						
+						<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_inituseSW.png?raw=true" alt="creates new data train and data test for sliding window" />
+
 						<br />
 						
 					</li>
@@ -362,8 +362,8 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 								
 								This is an example of code for preprocessing tweets:
 								
-								![preprocessing tweets](../../public/img_sentiment/z_getprocessed.png)
-								
+								<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_getprocessed.png?raw=true" alt="preprocesses tweets" />
+
 								<br />
 								
 							</li>
@@ -447,8 +447,8 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 						
 						This is an example of code for applying the core classifier:
 						
-						![applying core classifier](../../public/img_sentiment/z_apply.png)
-						
+						<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_apply.png?raw=true" alt="applies core classifier" />
+
 						<br />
 						
 					</li>
@@ -479,8 +479,8 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 								
 								This is an example of code when we implement the sliding window:
 								
-								![implementing sliding window](../../public/img_sentiment/z_useSWtrue.png)
-								
+								<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_useSWtrue.png?raw=true" alt="implements sliding window" />
+
 								<br />
 								
 							</li>
@@ -501,8 +501,8 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 									
 									This is an example of code when we do not implement the sliding window:
 									
-									![not implementing sliding window](../../public/img_sentiment/z_useSWfalse.png)
-									
+									<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_useSWfalse.png?raw=true" alt="does not implement sliding window" />
+
 									<br />
 									
 								</ul>
