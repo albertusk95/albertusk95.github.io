@@ -187,7 +187,7 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 							</li>
 						</ul>
 						
-						This is an example of code for training the text-based representation:
+						This is an example of code for training the text-based representation:<br />
 						
 						<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_trainText.png?raw=true" alt="text-based representation training" />
 
@@ -216,13 +216,13 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 							</li>
 						</ul>
 					
-						This is an example of code for initializing filterer and tokenizer:
+						This is an example of code for initializing filterer and tokenizer:<br />
 						
 						<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_stwvngram.png?raw=true" alt="initializes filterer and tokenizer" />
 
 						<br />
 						
-						This is an example of code for initializing classifiers:
+						This is an example of code for initializing classifiers:<br />
 						
 						<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_initClassifier.png?raw=true" alt="initializes classifiers" />
 
@@ -290,7 +290,7 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 									</li>
 								</ul>
 								
-								This is an example of code for retrieving features attributes, such as abbreviations, happy and sad emoticons, etc:
+								This is an example of code for retrieving features attributes, such as abbreviations, happy and sad emoticons, etc:<br />
 								
 								<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_ctortxtproc.png?raw=true" alt="retrieves feature attributes" />
 
@@ -315,7 +315,7 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 							<li>When we choose to use this method, we need to provide an alternative way in case we receive the <b>nan</b> class as the predicted class. To do that, we have to create a new data train which will be a place for storing the current instance and training the new model based on the "agreed" instances in that data train</li>
 						</ul>
 						
-						This is an example of code for creating a new data train and data test for the case of using sliding window:
+						This is an example of code for creating a new data train and data test for the case of using sliding window:<br />
 
 						<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_inituseSW.png?raw=true" alt="creates new data train and data test for sliding window" />
 
@@ -360,7 +360,7 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 									</li>
 								</ul>
 								
-								This is an example of code for preprocessing tweets:
+								This is an example of code for preprocessing tweets:<br />
 								
 								<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_getprocessed.png?raw=true" alt="preprocesses tweets" />
 
@@ -445,7 +445,7 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 							</li>
 						</ul>
 						
-						This is an example of code for applying the core classifier:
+						This is an example of code for applying the core classifier:<br />
 						
 						<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_apply.png?raw=true" alt="applies core classifier" />
 
@@ -477,7 +477,7 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 									</li>
 								</ul>
 								
-								This is an example of code when we implement the sliding window:
+								This is an example of code when we implement the sliding window:<br />
 								
 								<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_useSWtrue.png?raw=true" alt="implements sliding window" />
 
@@ -499,7 +499,7 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 										</ul>
 									</li>
 									
-									This is an example of code when we do not implement the sliding window:
+									This is an example of code when we do not implement the sliding window:<br />
 									
 									<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_sentiment/z_useSWfalse.png?raw=true" alt="does not implement sliding window" />
 
