@@ -516,3 +516,30 @@ In this part, I will explain the core principal of this Sentiment Analysis and s
 	</li>
 </ul>
 
+-----
+
+## References
+
+Thanks to Petter Törnberg (Copyright 2013) for the demo code used to analyze the sentiment value of a word. I implemented the code on SWN3.java with several modifications.
+
+<br />
+
+You can find the original code [here](sentiwordnet.isti.cnr.it/code/SentiWordNetDemoCode.java)
+
+<br />
+
+You can read the theories behind the production of this application from these resources:
+
+<ul>
+    <li><a href="https://www.researchgate.net/publication/269093520_Feature_based_sentiment_analysis">https://www.researchgate.net/publication/269093520_Feature_based_sentiment_analysis</a></li>
+    <li><a href="https://cs.nyu.edu/grishman/jet/guide/PennPOS.html">https://cs.nyu.edu/grishman/jet/guide/PennPOS.html</a></li>
+    <li><a href="http://partofspeech.org/">http://partofspeech.org/</a></li>
+    <li><a href="http://www.slideshare.net/Cataldo/aiia-14dart">http://www.slideshare.net/Cataldo/aiia-14dart</a></li>
+</ul>
+
+-----
+
+## Project Display and Code
+
+You can find the entire source code on my [Github](https://github.com/albertusk95/sentiment-analysis-twitter)
+
