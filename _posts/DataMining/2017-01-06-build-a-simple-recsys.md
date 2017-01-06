@@ -86,100 +86,96 @@ A traditional way to find recommended movies for me is by looking at the person 
 To solve this issue, we need to give a weighted score that ranks the users. Take the rating of all the other users and multiply how similar they are to me by the rating they gave for each movie. This table will give you a better understanding.
 
 <table>
-	<thead>
-		<tr>
-			<td>Users</td>
-			<td>Similarity</td>
-			<td>Lucy</td>
-			<td>S x Lucy</td>
-			<td>Lights Out</td>
-			<td>S x Lights Out</td>
-			<td>Finding Nemo</td>
-			<td>S x Finding Nemo</td>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>user00</td>
-			<td>0.99</td>
-			<td>3.0</td>
-			<td>2.97</td>
-			<td>2.5</td>
-			<td>2.48</td>
-			<td>3.0</td>
-			<td>2.97</td>
-		</tr>
-		<tr>
-			<td>user01</td>
-			<td>0.38</td>
-			<td>3.0</td>
-			<td>1.14</td>
-			<td>3.0</td>
-			<td>1.14</td>
-			<td>1.5</td>
-			<td>0.57</td>
-		</tr>
-		<tr>
-			<td>user03</td>
-			<td>0.89</td>
-			<td>4.5</td>
-			<td>4.02</td>
-			<td>-</td>
-			<td>-</td>
-			<td>3.0</td>
-			<td>2.68</td>
-		</tr>
-		<tr>
-			<td>user04</td>
-			<td>0.92</td>
-			<td>3.0</td>
-			<td>2.77</td>
-			<td>3.0</td>
-			<td>2.77</td>
-			<td>2.0</td>
-			<td>1.85</td>
-		</tr>
-		<tr>
-			<td>user05</td>
-			<td>0.66</td>
-			<td>3.0</td>
-			<td>1.99</td>
-			<td>3.0</td>
-			<td>1.99</td>
-			<td>-</td>
-			<td>-</td>
-		</tr>
-		<tr>
-			<td>Total</td>
-			<td>-</td>
-			<td>-</td>
-			<td>12.89</td>
-			<td>-</td>
-			<td>8.38</td>
-			<td>-</td>
-			<td>8.07</td>
-		</tr>
-		<tr>
-			<td>Sim. Sum</td>
-			<td>-</td>
-			<td>-</td>
-			<td>3.84</td>
-			<td>-</td>
-			<td>2.95</td>
-			<td>-</td>
-			<td>3.18</td>
-		</tr>
-		<tr>
-			<td>Total/Sim. Sum</td>
-			<td>-</td>
-			<td>-</td>
-			<td>3.35</td>
-			<td>-</td>
-			<td>2.83</td>
-			<td>-</td>
-			<td>2.53</td>
-		</tr>
-	</tbody>
+	<tr>
+		<td><b>Users</b></td>
+		<td><b>Similarity</b></td>
+		<td><b>Lucy</b></td>
+		<td><b>S x Lucy</b></td>
+		<td><b>Lights Out</b></td>
+		<td><b>S x Lights Out</b></td>
+		<td><b>Finding Nemo</b></td>
+		<td><b>S x Finding Nemo</b></td>
+	</tr>
+	<tr>
+		<td>user00</td>
+		<td>0.99</td>
+		<td>3.0</td>
+		<td>2.97</td>
+		<td>2.5</td>
+		<td>2.48</td>
+		<td>3.0</td>
+		<td>2.97</td>
+	</tr>
+	<tr>
+		<td>user01</td>
+		<td>0.38</td>
+		<td>3.0</td>
+		<td>1.14</td>
+		<td>3.0</td>
+		<td>1.14</td>
+		<td>1.5</td>
+		<td>0.57</td>
+	</tr>
+	<tr>
+		<td>user03</td>
+		<td>0.89</td>
+		<td>4.5</td>
+		<td>4.02</td>
+		<td>-</td>
+		<td>-</td>
+		<td>3.0</td>
+		<td>2.68</td>
+	</tr>
+	<tr>
+		<td>user04</td>
+		<td>0.92</td>
+		<td>3.0</td>
+		<td>2.77</td>
+		<td>3.0</td>
+		<td>2.77</td>
+		<td>2.0</td>
+		<td>1.85</td>
+	</tr>
+	<tr>
+		<td>user05</td>
+		<td>0.66</td>
+		<td>3.0</td>
+		<td>1.99</td>
+		<td>3.0</td>
+		<td>1.99</td>
+		<td>-</td>
+		<td>-</td>
+	</tr>
+	<tr>
+		<td>Total</td>
+		<td>-</td>
+		<td>-</td>
+		<td>12.89</td>
+		<td>-</td>
+		<td>8.38</td>
+		<td>-</td>
+		<td>8.07</td>
+	</tr>
+	<tr>
+		<td>Sim. Sum</td>
+		<td>-</td>
+		<td>-</td>
+		<td>3.84</td>
+		<td>-</td>
+		<td>2.95</td>
+		<td>-</td>
+		<td>3.18</td>
+	</tr>
+	<tr>
+		<td>Total/Sim. Sum</td>
+		<td>-</td>
+		<td>-</td>
+		<td>3.35</td>
+		<td>-</td>
+		<td>2.83</td>
+		<td>-</td>
+		<td>2.53</td>
+	</tr>
 </table>
 
 
