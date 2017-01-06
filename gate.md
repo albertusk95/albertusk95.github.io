@@ -15,6 +15,7 @@ You can go to my stories easily using these navigation links.
 
 > ### Data Mining
 > * [Sentiment Analysis using WEKA](https://albertusk95.github.io/2016/12/26/sentiment-analysis)
+> * [Build a Simple Recommendation System using Python](https://albertusk95.github.io/2017/01/06/build-a-simple-recsys)
 
 > ### Computer Organization
 > * #### Buffer Lab
