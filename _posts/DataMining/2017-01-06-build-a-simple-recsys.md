@@ -5,7 +5,7 @@ title: Build a Simple Recommendation System using Python
 
 ### Introduction
 
-Have you ever visited such sites providing services for movies, dating, food, music, books, shopping, or even jokes? I'm pretty sure that most of you have done so, yet have you ever noticed that in certain condition you suddenly find out several options of product that attract your attention? Have you ever thought that when you choose to click those options, it is one of the company's strategies to make you buy their products with larger amount (they also hope that you will spend your time longer on their site and come back again for you think that the provided products are interesting)?
+Have you ever visited sites providing services for movies, dating, food, music, books, shopping, or even jokes? I'm pretty sure that most of you have done so, yet have you ever noticed that in certain condition you suddenly find out several options of product that attract your attention? Have you ever thought that when you choose to click those options, it is one of the company's strategies to make you buy their products with larger amount (they also hope that you will spend your time longer on their site and come back again for you think that the provided products are interesting)?
 
 So, if you are interested in finding the answers for those enquiries, the primary question is how do the provider / company provide those options that matched your preferences? The answer is they use a feature called the **recommender system**. This feature will try to find your preferences by analyzing your purchases history and by doing this, you can say that you are acquainted by the system. Because of every person has different preferences, the system will try to build a user model that stores your evaluation for each type of product. Your evaluation can be represented as ratings from one to five, as yes/no voting, etc.
 
@@ -21,7 +21,9 @@ In this article, we will use movies as the type of product. The user can rate a 
 
 So, let's start by creating a small dictionary that stores the rating for the movies chosen by every user. The simplest way is to represent it in JSON (JavaScript Object Notation) format (it is recommended to store the dictionary in a database when you have a large dataset). Here is the code.
 
-// code critics
+<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_recsys/recsys_dict0.png?raw=true" alt="Preferences Dictionary 0" />
+
+<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_recsys/recsys_dict1.png?raw=true" alt="Preferences Dictionary 1" />
 
 -----
 
@@ -43,7 +45,9 @@ By using that equation, we'll get the distance between two users and we can see 
 
 This is the implementation code for this technique:
 
-// euclidean distance code
+<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_recsys/recsys_euclidean.png?raw=true" alt="Euclidean Distance" />
+
+<br />
 
 ### _Pearson Correlation Score_
 
@@ -61,7 +65,9 @@ For the next three steps, we still access the list in which we add up the rating
 
 This is the implemenation code for this technique:
 
-// pearson code
+<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_recsys/recsys_pearson.png?raw=true" alt="Pearson Correlation Score" />
+
+<br />
 
 -----
 
@@ -71,7 +77,7 @@ In this step we have had methods for comparing two users and finding their simil
 
 Afterwards, we will rank them so that we know whose recommendation I should take when deciding on a movie. We can do this by simply sorting the similarity scores stored in the list where the highest score appears at the top. This is the implemenation code for this step:
 
-// ranking code
+<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_recsys/recsys_ranking.png?raw=true" alt="Ranking the Similar Preferences" />
 
 -----
 
@@ -178,6 +184,35 @@ To solve this issue, we need to give a weighted score that ranks the users. Take
 	</tr>
 </table>
 
+The above table shows the users having similar tastes with **user06** and three movies that **user06** has not rated yet. Also, the column with **S x (movie's name)** gives the similarity score multiplied by the rating, so a user who is similar to **user06** will contribute more to the overall score than a person who is different from **user06**.
 
+Moreover, we can just use the **Total** values as the base of movies ranking. This **Total** values tell us that the system considers all reviews provided by every user that has similar tastes with the _current user_. This diversity makes the recommending process become balance.
 
+However, if we analyze further, we can see that if we use the **Total** value for ranking the recommended movies then the movies rated by more users would have a big advantage, yet the movie's characteristic might not be suitable with the _current user_'s preference. To handle this problem, we can utilize the similarity scores in which their addition will divide the **Total** values. The summation of the similarity scores depends on whether the corresponding user has rated that movie. For example, _Lucy_ is rated by all users so we sum up all the similarity scores. However, _Lights Out_ is not rated by _user03_ so we skip the similarity score given by _user03_. This approach can reduce the tendency of **Total** values to dominate the recommending process.
 
+So, after normalizing the **Total** values, we can just use the result represented by this formula: **Total / Sim. Sum**. We use this value to rank the movies so that the user know the best recommended movie.
+
+In addition, we can see that we would get different recommendation scores when we implement different similarity metric (ex. Euclidean Distance, Pearson Correlation Score, etc). This is the primary element that affects the recommendation scores. It should be considered according to your application's type.
+
+This the implementation code for this step:
+
+<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_recsys/recsys_getrecom.png?raw=true" alt="Creating Recommendations" />
+
+<br />
+
+You've now built a complete recommendation system!
+
+-----
+
+### References
+
+The primary resource is <a href="http://it-ebooks.directory/book-0596529325.html">Programming Collective Intelligence</a>. It's an interesting book and I recommend you to learn from there.
+ 
+Here are some great materials to support your learning process:
+
+<ul>
+	<li><a href="https://www.toptal.com/algorithms/predicting-likes-inside-a-simple-recommendation-engine">Predicting Likes Inside a Simple Recommendation Engine</a></li>
+	<li><a href="http://www.cs.carleton.edu/cs_comps/0607/recommend/recommender/itembased.html">Item-based Collaborative Filtering</a></li>
+	<li><a href="http://siplab.tudelft.nl/sites/default/files/sigir06_similarityfusion.pdf">Unifying User-based and Item-based Collaborative Filtering Approaches by Similarity Fusion</a></li>
+	<li><a href="https://cseweb.ucsd.edu/~jmcauley/cse255/reports/wi15/Guanwen%20Yao_Lifeng_Cai.pdf">User-Based and Item-Based Collaborative Filtering Recommendation Algorithms Design</a></li>
+</ul>
