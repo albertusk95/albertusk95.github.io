@@ -63,7 +63,7 @@ First step, we do need to find the movies rated by both users and if there are n
 
 For the next three steps, we still access the list in which we add up the ratings score, sum up the squares of the ratings, and add up the product of the ratings. These values will be used to measure the correlation score.
 
-This is the implemenation code for this technique:
+This is the implementation code for this technique:
 
 <img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_recsys/recsys_pearson.png?raw=true" alt="Pearson Correlation Score" />
 
@@ -75,7 +75,7 @@ This is the implemenation code for this technique:
 
 In this step we have had methods for comparing two users and finding their similarity score. We do this by selecting one user and compare his/her preferences with the other users providing rating for the movies rated by both users. 
 
-Afterwards, we will rank them so that we know whose recommendation I should take when deciding on a movie. We can do this by simply sorting the similarity scores stored in the list where the highest score appears at the top. This is the implemenation code for this step:
+Afterwards, we will rank them so that we know whose recommendation I should take when deciding on a movie. We can do this by simply sorting the similarity scores stored in the list where the highest score appears at the top. This is the implementation code for this step:
 
 <img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_recsys/recsys_ranking.png?raw=true" alt="Ranking the Similar Preferences" />
 
@@ -85,7 +85,7 @@ Afterwards, we will rank them so that we know whose recommendation I should take
 
 Till now we have built a system that can provide several users whose advice should be considered when a user wants to choose a movie. In other words, when a user wants to read reviews from the other users, he/she may select a user whose similarity score is very close to his/her score (this is the purpose of ranking process).
 
-However, the primary goal of this system is to provide movies recommendation (movies that have not been chosen by a user yet). Therefore, the similar approach to this problem is when we give a user's name as an input, the system will provide a list of recommended movies rather than a list of the other users whose adviced might good enough to consider.
+However, the primary goal of this system is to provide movies recommendation (movies that have not been chosen by a user yet). Therefore, the similar approach to this problem is when we give a user's name as an input, the system will provide a list of recommended movies rather than a list of the other users whose advice might good enough to consider.
 
 A traditional way to find recommended movies for me is by looking at the person who has tastes similar to mine and get the movies they like that I have not watched yet. But, this approach could give me information that has high inaccuracy. The simplest example of this problem is there is a possibility that the similar user I selected has not watched another movies that I might like. So, in this case the options are limited and I just wait for that similar user to expand his/her movies collection. The actual action is the system should be able to predict any movies I might like not only come from the similar user but also by considering ratings provided by the other users. The system could also find the suitable movies based on my preferences towards the item characteristic. In this case, the system will analyze the content of the items and predict whether the characteristic is match with my preferences.
 
