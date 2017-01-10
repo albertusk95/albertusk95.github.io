@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Get Acquainted with Machine Translation
+title: Get Acquainted with the Machine Translation 
 ---
 
 ### Introduction
