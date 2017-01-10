@@ -17,6 +17,9 @@ You can go to my stories easily using these navigation links.
 > * [Sentiment Analysis using WEKA](https://albertusk95.github.io/2016/12/26/sentiment-analysis)
 > * [Build a Simple Recommendation System using Python](https://albertusk95.github.io/2017/01/06/build-a-simple-recsys)
 
+> ### Natural Language Processing and Machine Translation
+> * [Get Acquainted with Machine Translation](https://albertusk95.github.io/2017/01/10/mach-trans-overview)
+
 > ### Computer Organization
 > * #### Buffer Lab
 >> * [What is Buffer Overflow?](https://albertusk95.github.io/2016/07/04/What-is-Buffer-Overflow)
