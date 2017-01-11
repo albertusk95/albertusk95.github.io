@@ -40,15 +40,19 @@ However, we can also find the probability of a sentence to occur in a certain la
 	</tr>
 </table>
 
-From the formula, we can see that it computes the conditional probability. When we have <b>P(An | A0, A1, ..., An-1)</b>, it means that we need to compute the probability of a word **An** to be the next word of the sentence **A0A1...An-1**. Let's say we want to compute the probability of sentence **I am sleeping**, so we use the formula and we get <b>P(I am sleeping) = P(I) P(am | I) P(sleeping | I am)</b>.
+From the formula, we can see that it computes the conditional probability. When we have <b>P(An | A0, A1, ..., An-1)</b>, it means that we need to compute the probability of a word **An** to be the next word of the sentence **A0A1...An-1**. Let's say we want to compute the probability of sentence _I am sleeping_, so we use the formula and we get <b>P(I am sleeping) = P(I) P(am | I) P(sleeping | I am)</b>.
 
-When we want to compute the probability of a word given the sequence of words beforehand (probability of **sleeping** after the sentence **I am**), we can estimate the value by calculating the number of **I am sleeping** in the corpus and divide the value by the number of <b>I am *</b> in the corpus, where * can be any words as long as it appears in the corpus.
+When we want to compute the probability of a word given the sequence of words beforehand (probability of _sleeping_ after the sentence _I am_), we can estimate the value by calculating the number of _I am sleeping_ in the corpus and divide the value by the number of _I am *_ in the corpus, where * can be any words as long as it appears in the corpus.
 
 ### N-Gram Language Model
 
 We have known that to compute the probability of a word **W** to appear as the next element in a sequence of **XYZ**, we do need to compute the number of sentences consisting of **XYZ** and **W** which means we need to find the sentences (**XYZW**) in the corpus. However, there's still a possibility that we can not find the sentences as the corpus does not contain any sentence which is created from all the possibility of the word's permutation. In case of this, we'll get 0 as the probability whilst the sentence might be a part of the language.
 
-So, how to handle this problem? Let's get acquainted with **N-Gram Language Model**. It is actually the result of **Markov assumption** in which when we compute the conditional probability, we presume that every word only depends on the specified amount of the preceding words (we can denote the amount as **K**). Let's take an example with a sentence which says **I am reading a book** and we use K = 2. With these data, we can apply the formula, namely <b>P(I am reading a book) = P(I) P(am | I) P(reading | am) P(a | reading) P(book | a)</b> in which we can see that every word depends on the exactly one preceding word. This type of N-Gram is called by **bigram**. We can also use K=1 (**unigram**), K=3 (**trigram**), and so forth, yet the smaller K more likely give better result as the probability to find sentence in the corpus is higher.
+So, how to handle this problem? Let's get acquainted with **N-Gram Language Model**. It is actually the result of _Markov assumption_ in which when we compute the conditional probability, we presume that every word only depends on the specified amount of the preceding words (we can denote the amount as **K**). Let's take an example with a sentence which says _I am reading a book_ and we use K = 2. With these data, we can apply the formula, namely 
+
+<table><tr><td>P(I am reading a book) = P(I) P(am | I) P(reading | am) P(a | reading) P(book | a)</td></tr></table>
+
+in which we can see that every word depends on exactly one preceding word. This type of N-Gram is called by **bigram**. We can also use K=1 (**unigram**), K=3 (**trigram**), and so forth, yet the smaller K more likely give better result as the probability to find sentence in the corpus is higher.
 
 ### Smoothing
 
@@ -56,7 +60,7 @@ So, until now we've solved the dependency problem which means we are not depende
 
 What is **Smoothing**? It is an assumption where we add one or more virtual words (denoted by **VW**) to the corpus so that the probability of any rare words is not zero (we will get a small probability but not zero). For example, assume that the word _absorbefacient_ is not found in the corpus so we add an imaginary word _absorbefacient_ (may be more than one) and a custom dictionary containing some chosen words in the corresponding language. The purpose of a custom dictionary is to store all the rare words which the probability will be computed.
 
-Let's take an example with a word **sleep** where the initial number of word sleep in the corpus is 100, the value of VW is 1, the size of our custom dictionary is 5, and the size of corpus is 100000000.
+Let's take an example with a word _sleep_ where the initial number of word sleep in the corpus is 100, the value of VW is 1, the size of our custom dictionary is 5, and the size of corpus is 100000000.
 
 > P(sleep) = (100 + 1) / (100000000 + 5) = 101/100000005
 
