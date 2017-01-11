@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Java Heap and Stack + Reference Variables
+title: Java Heap and Stack Memory (Behind the Scene)
 ---
 
 ### Introduction
@@ -59,31 +59,31 @@ This is how memory allocation and deallocation work in terms of Java application
 
 <ul>
 	<li>
-		When main() method is found, Java Runtime will create a block in the Stack memory. This block contains local primitive variables defined in main() method, namely **val0_int**. Because we create an object in line 21 and 23, a reference variable will be stored in the block whereas the object will be stored in the heap memory. The reference variable in the Stack refers to the object in the Heap which means the reference variables store the memory address of the object in the Heap.
+		When main() method is found, Java Runtime will create a block in the Stack memory. This block contains local primitive variables defined in main() method, namely <b>val0_int</b>. Because we create an object in line 21 and 23, a reference variable will be stored in the block whereas the object will be stored in the heap memory. The reference variable in the Stack refers to the object in the Heap which means the reference variables store the memory address of the object in the Heap.
 		
 		<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_java/java0_0.png?raw=true" alt="Memory allocation for main() method" />
 
 	</li>
 	<li>
-		When we call **func1** in line 24, a new block for **func1** will be created above the main() method's block and Java Runtime will reserve a space for **val1_int** within the block.
+		When we call <b>func1</b> in line 24, a new block for <b>func1</b> will be created above the main() method's block and Java Runtime will reserve a space for <b>val1_int</b> within the block.
 		
 		<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_java/java0_1.png?raw=true" alt="Memory allocation for func1() method" />
 
 	</li>
 	<li>
-		Now we're inside **func1** and we're calling **func2** from this method (line 7). The same action will be executed, that is a new block for **func2** will be created above the func1's block. However, there's a little difference for the memory allocation. It is because we have a String in this method in which we can not only store the local variable in Stack memory, but we have to store the String value in the Heap, spesifically in the **String Pool**. This String value will get a unique address in the pool and the variable stored in Stack memory will refer to this address. So, we can say that we'll have an element containing the pair of local variable and the address of String value in the String pool.
+		Now we're inside <b>func1</b> and we're calling <b>func2</b> from this method (line 7). The same action will be executed, that is a new block for <b>func2</b> will be created above the func1's block. However, there's a little difference for the memory allocation. It is because we have a String in this method in which we can not only store the local variable in Stack memory, but we have to store the String value in the Heap, spesifically in the <b>String Pool</b>. This String value will get a unique address in the pool and the variable stored in Stack memory will refer to this address. So, we can say that we'll have an element containing the pair of local variable and the address of String value in the String pool.
 		
 		<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_java/java0_2.png?raw=true" alt="Memory allocation for func2() method and String pool" />
 
 	</li>
 	<li>
-		After allocating a space for each of the local primitive variables from **func2**, we can see that the **func2** instructions have already completed. It means that Java Runtime can deallocate the block reserved for **func2** and now the stack pointer focus on the **func1**'s block and executes the next instructions in **func1**. However, **func1** does not have any instructions again after calling **func2**, so its block will also be deallocated and now we focus on main() method.
+		After allocating a space for each of the local primitive variables from <b>func2</b>, we can see that the <b>func2</b> instructions have already completed. It means that Java Runtime can deallocate the block reserved for <b>func2</b> and now the stack pointer focus on the <b>func1</b>'s block and executes the next instructions in <b>func1<b>. However, <b>func1</b> does not have any instructions again after calling <b>func2</b>, so its block will also be deallocated and now we focus on main() method.
 		
 		<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_java/java0_3.png?raw=true" alt="Memory deallocation for func1() and func2() method" />
 
 	</li>
 	<li>
-		The next instruction of the main method is calling **func3** with an object as the parameter. When we get to this point, Java Runtime will create a new block for **func3** above the main's block. As the method receives an argument which is a reference variable, Java Runtime allocates a space for it in the Stack in which it refers to the object (obj) in the Heap. Moreover, Java Runtime will also allocate a space for String variable in the block in which it refers to the value resided in the String pool.
+		The next instruction of the main method is calling <b>func3<b> with an object as the parameter. When we get to this point, Java Runtime will create a new block for <b>func3</b> above the main's block. As the method receives an argument which is a reference variable, Java Runtime allocates a space for it in the Stack in which it refers to the object (obj) in the Heap. Moreover, Java Runtime will also allocate a space for String variable in the block in which it refers to the value resided in the String pool.
 		
 		<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_java/java0_4.png?raw=true" alt="Memory allocation for func3() method" />
 
@@ -91,4 +91,12 @@ This is how memory allocation and deallocation work in terms of Java application
 	<li>
 		Afterwards, the overall instructions are completed and the stack memory will be deallocated. When the stack is free, the objects and the String pool in the Heap will not have any references variables that refer to them, so Garbage Collection (GC) will deallocate these elements and free the Heap memory.
 	</li>
+</ul>
+
+-----
+
+### References
+
+<ul>
+	<li><a href="https://www.youtube.com/watch?v=UcPuWY0wn3w">https://www.youtube.com/watch?v=UcPuWY0wn3w</a></li>
 </ul>
