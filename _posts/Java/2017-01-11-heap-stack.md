@@ -5,7 +5,7 @@ title: Java Heap and Stack Memory (Behind the Scene)
 
 ### Introduction
 
-When we want to create an object in Java, what does actually happen inside the memory? How does memory allocation work when our Java program is executed? Why does Java have Garbage Collection (GC) and what are the benefits of this feature?
+When we want to create an object in Java, what actually happens inside the memory? How does memory allocation work when our Java program is executed? Why does Java have Garbage Collection (GC) and what are the benefits of this feature?
 
 Briefly explain, Java Runtime Memory consists two sections, namely Heap Memory and Stack Memory. Both spaces reside on computer's RAM and now we'll talk about memory allocation in terms of Java application.
 
