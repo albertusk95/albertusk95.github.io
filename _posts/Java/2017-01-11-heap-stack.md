@@ -83,7 +83,7 @@ This is how memory allocation and deallocation work in terms of Java application
 
 	</li>
 	<li>
-		The next instruction of the main method is calling <b>func3<b> with an object as the parameter. When we get to this point, Java Runtime will create a new block for <b>func3</b> above the main's block. As the method receives an argument which is a reference variable, Java Runtime allocates a space for it in the Stack in which it refers to the object (obj) in the Heap. Moreover, Java Runtime will also allocate a space for String variable in the block in which it refers to the value resided in the String pool.
+		The next instruction of the main method is calling <b>func3</b> with an object as the parameter. When we get to this point, Java Runtime will create a new block for <b>func3</b> above the main's block. As the method receives an argument which is a reference variable, Java Runtime allocates a space for it in the Stack in which it refers to the object (obj) in the Heap. Moreover, Java Runtime will also allocate a space for String variable in the block in which it refers to the value resided in the String pool.
 		
 		<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_java/java0_4.png?raw=true" alt="Memory allocation for func3() method" />
 
