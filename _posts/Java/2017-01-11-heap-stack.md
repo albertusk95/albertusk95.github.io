@@ -77,7 +77,7 @@ This is how memory allocation and deallocation work in terms of Java application
 
 	</li>
 	<li>
-		After allocating a space for each of the local primitive variables from <b>func2</b>, we can see that the <b>func2</b> instructions have already completed. It means that Java Runtime can deallocate the block reserved for <b>func2</b> and now the stack pointer focus on the <b>func1</b>'s block and executes the next instructions in <b>func1<b>. However, <b>func1</b> does not have any instructions again after calling <b>func2</b>, so its block will also be deallocated and now we focus on main() method.
+		After allocating a space for each of the local primitive variables from <b>func2</b>, we can see that the <b>func2</b> instructions have already completed. It means that Java Runtime can deallocate the block reserved for <b>func2</b> and now the stack pointer focus on the <b>func1</b>'s block and executes the next instructions in <b>func1</b>. However, <b>func1</b> does not have any instructions again after calling <b>func2</b>, so its block will also be deallocated and now we focus on main() method.
 		
 		<img src="https://github.com/albertusk95/albertusk95.github.io/blob/master/public/img_java/java0_3.png?raw=true" alt="Memory deallocation for func1() and func2() method" />
 
