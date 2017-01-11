@@ -13,7 +13,7 @@ You can go to my stories easily using these navigation links.
 > * [npm proxy error while not behind proxy](https://albertusk95.github.io/2016/09/03/npm-proxy-errors)
 
 > ### Java
-> * [Java Heap and Stack + Reference Variable](https://albertusk95.github.io/2017/01/11/heap-stack)
+> * [Java Heap and Stack Memory (Behind the Scene)](https://albertusk95.github.io/2017/01/11/heap-stack)
 
 > ### Data Mining
 > * [Sentiment Analysis using WEKA](https://albertusk95.github.io/2016/12/26/sentiment-analysis)
