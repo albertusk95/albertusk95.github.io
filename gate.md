@@ -21,6 +21,7 @@ You can go to my stories easily using these navigation links.
 
 > ### Natural Language Processing and Machine Translation
 > * [Get Acquainted with Machine Translation](https://albertusk95.github.io/2017/01/10/mach-trans-overview)
+> * [Statistical Machine Translation - Language Models](https://albertusk95.github.io/2017/01/11/language-model)
 
 > ### Computer Organization
 > * #### Buffer Lab
