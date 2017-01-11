@@ -34,7 +34,11 @@ Language model uses a large enough corpus as its dictionary. It calculates the p
 
 However, we can also find the probability of a sentence to occur in a certain language. Because a sentence is just a sequence of words, we can use the concept of conditional probability to solve this problem. If **A0,A1,A2,...,An** denotes a sentence where **Ai** denotes a word in the sentence, then the probability of a sentence to occur in a certain language is denoted by P(A0,A1,A2,...,An) which means we have to calculate the probability of a word A0 AND a word A1 AND a word A2 AND so on till An. To achieve the result, we use the chain rule: 
 
-> * P(A0, A1, A2, ..., An) = P(A0) P(A1 | A0) ... P(An | A0, A1, ..., An-1)
+<table>
+	<tr>
+		<td>P(A0, A1, A2, ..., An) = P(A0) P(A1 | A0) ... P(An | A0, A1, ..., An-1)</td>
+	</tr>
+</table>
 
 From the formula, we can see that it computes the conditional probability. When we have P(An | A0, A1, ..., An-1), it means that we need to compute the probability of a word **An** to be the next word of the sentence **A0A1...An-1**. Let's say we want to compute the probability of sentence **I am sleeping**, so we use the formula and we get **P(I am sleeping) = P(I) P(am | I) P(sleeping | I am)**.
 
