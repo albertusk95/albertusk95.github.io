@@ -17,6 +17,7 @@ You can go to my stories easily using these navigation links.
 
 > ### Machine Learning
 > * [Support Vector Machine - Overview](https://albertusk95.github.io/2017/01/13/svm-math)
+> * [Support Vector Machine - Part 2 - Computing the Margin](https://albertusk95.github.io/2017/01/14/svm-math-2)
 
 > ### Data Mining
 > * [Sentiment Analysis using WEKA](https://albertusk95.github.io/2016/12/26/sentiment-analysis)
