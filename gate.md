@@ -15,6 +15,9 @@ You can go to my stories easily using these navigation links.
 > ### Java
 > * [Java Heap and Stack Memory (Behind the Scene)](https://albertusk95.github.io/2017/01/11/heap-stack)
 
+> ### Machine Learning
+> * [Support Vector Machine - Overview](https://albertusk95.github.io/2017/01/13/svm-math)
+
 > ### Data Mining
 > * [Sentiment Analysis using WEKA](https://albertusk95.github.io/2016/12/26/sentiment-analysis)
 > * [Build a Simple Recommendation System using Python](https://albertusk95.github.io/2017/01/06/build-a-simple-recsys)
